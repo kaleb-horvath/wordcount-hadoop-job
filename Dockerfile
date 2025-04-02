@@ -18,9 +18,8 @@ WORKDIR /app
 COPY --from=build /app/target/WordCount-1.0-SNAPSHOT.jar /app/WordCount-1.0-SNAPSHOT.jar
 
 # Mount a volume to store the artifact on the host system
-VOLUME /app/output
-
+# VOLUME /app/output
 # Copy the generated jar to the mounted volume
-RUN cp /app/WordCount-1.0-SNAPSHOT.jar ./WordCount.jar
+# RUN cp /app/WordCount-1.0-SNAPSHOT.jar ./WordCount.jar
 
 CMD ["tail", "-f", "/dev/null"]
