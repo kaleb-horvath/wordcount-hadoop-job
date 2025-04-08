@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         PROJECT_TARGET_JDK = '11'
-        ARTIFACTS_BACKUP_DIR = "${env.JENKINS_SERVER_ARTIFACT_BACKUP}"
+        ARTIFACTS_BACKUP_DIR = "${env.JENKINS_SERVER_ARTIFACT_BACKUP_DIR}"
     }
 
 
