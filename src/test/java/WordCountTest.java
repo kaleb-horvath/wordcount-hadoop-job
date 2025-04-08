@@ -18,7 +18,7 @@ import java.nio.file.Paths;
 
 import static org.junit.Assert.assertTrue;
 
-ppublic class WordCountTest {
+public class WordCountTest {
 
     private MiniDFSCluster dfsCluster;
     private MiniYARNCluster yarnCluster;
