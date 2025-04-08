@@ -44,7 +44,7 @@ pipeline {
                 script {
                     def artifactName = sh(script: 'basename $(ls target/*.jar)', returnStdout: true).trim()
                     archiveArtifacts artifacts: "target/${artifactName}", fingerprint: true, allowEmptyArchive: true
-                    sh "cp target/${artifactName} /var/jenkins_home/artifacts"
+                    sh "cp target/${artifactName} ${ARTIFACTS_BACKUP_DIR}"
                 }
             }
         }
