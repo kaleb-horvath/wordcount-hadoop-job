@@ -24,13 +24,31 @@
             <version>3.3.5</version>
         </dependency>
 
+
+
+
         <!-- for local unit testing -->
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-minicluster</artifactId>
-            <version>3.3.6</version> <!-- Match your Hadoop version -->
+            <version>3.3.5</version> <!-- Match your Hadoop version -->
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-hdfs</artifactId>
+            <version>3.3.5</version> <!-- Match your Hadoop version -->
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-yarn-server-tests</artifactId>
+            <version>3.3.5</version>
+            <scope>test</scope>
+        </dependency>
+
 
         <!-- SLF4J Logger Dependency (Hadoop uses SLF4J for logging) -->
         <dependency>
