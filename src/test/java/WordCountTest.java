@@ -18,7 +18,7 @@ import java.nio.file.Paths;
 
 import static org.junit.Assert.assertTrue;
 
-public class WordCountTest {
+ppublic class WordCountTest {
 
     private MiniDFSCluster dfsCluster;
     private MiniYARNCluster yarnCluster;
@@ -43,8 +43,16 @@ public class WordCountTest {
         // Write input to HDFS
         Path inputPath = new Path("/input/test.txt");
         Path outputPath = new Path("/output/");
+        FileSystem fs = dfsCluster.getFileSystem();
+
+        // Clean up the output directory if it exists
+        if (fs.exists(outputPath)) {
+            fs.delete(outputPath, true);
+        }
+
+        // Write data to the HDFS input file
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-                dfsCluster.getFileSystem().create(inputPath, true)))) {
+                fs.create(inputPath, true)))) {
             writer.write("hello world\n");
             writer.write("hello hadoop\n");
             writer.write("hadoop world\n");
@@ -63,7 +71,15 @@ public class WordCountTest {
         assertTrue("Job failed", job.waitForCompletion(true));
 
         // Validate output
-        String output = new String(Files.readAllBytes(Paths.get("output/part-r-00000")));
+        Path outputFilePath = new Path("/output/part-r-00000");
+        if (!fs.exists(outputFilePath)) {
+            throw new IOException("Output file not found: " + outputFilePath);
+        }
+
+        FSDataInputStream fsDataInputStream = fs.open(outputFilePath);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(fsDataInputStream));
+        String output = reader.lines().collect(Collectors.joining("\n"));
+
         String expectedOutput = "hadoop\t2\nhello\t2\nworld\t2\n";
         assertTrue("Output mismatch", output.trim().equals(expectedOutput.trim()));
     }
