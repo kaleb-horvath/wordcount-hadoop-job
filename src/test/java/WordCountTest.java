@@ -11,6 +11,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.FSDataInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.stream.Collectors;
+
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
 import java.nio.file.Files;
