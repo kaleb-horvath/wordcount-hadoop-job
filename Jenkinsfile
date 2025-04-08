@@ -6,10 +6,9 @@ pipeline {
     }
 
     environment {
-        PROJECT_NAME = 'WordCount'
-        PROJECT_TAG = '1.0-SNAPSHOT'
         PROJECT_TARGET_JDK = '11'
     }
+
 
     stages {
 
